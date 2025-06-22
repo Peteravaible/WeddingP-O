@@ -772,49 +772,59 @@
       }
 
       // 2. Kirim data ke SheetDB
-      await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          data: {
-            name,
-            attendance: attendance === "yes" ? "Akan Hadir" : "Tidak Bisa Hadir",
-            message,
-            selfie: selfieUrl,
-            time: new Date().toLocaleString("id-ID", { hour12: false })
-          }
-        })
-      });
+      try {
+        await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            data: {
+              name,
+              attendance: attendance === "yes" ? "Akan Hadir" : "Tidak Bisa Hadir",
+              message,
+              selfie: selfieUrl,
+              time: new Date().toLocaleString("id-ID", { hour12: false })
+            }
+          })
+        });
+      } catch (err) {
+        alert("Gagal mengirim data RSVP. Silakan coba lagi.");
+        return;
+      }
 
       rsvpForm.reset();
       document.getElementById('selfie-status').innerText = "";
       alert(`Terima kasih ${name} telah mengkonfirmasi kehadiran!`);
-      loadMessages(); // Refresh pesan
+      await loadMessages(); // Refresh pesan langsung setelah submit
     });
 
     async function loadMessages() {
-      const resp = await fetch(API_URL);
-      const data = await resp.json();
-      messageList.innerHTML = "";
-      if (data.length === 0) {
-        messageList.innerHTML = '<div style="text-align:center;color:#aaa;">Belum ada pesan masuk.</div>';
-        return;
-      }
-      data.reverse().forEach(msg => {
-        const div = document.createElement("div");
-        div.className = "message-list-item";
-        div.innerHTML = `
-          <div style="display:flex;align-items:center;gap:1rem;">
-            ${msg.selfie ? `<img src="${msg.selfie}" alt="Selfie" style="width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid #e50914;">` : ""}
-            <div>
-              <div style="font-weight:bold;color:#e50914;">${msg.name} <span style="color:#888;font-size:0.9em;font-weight:normal;">(${msg.attendance})</span></div>
-              <div style="color:#fff;margin:0.5rem 0 0.25rem 0;">${msg.message ? msg.message : '<span style="color:#bbb;font-style:italic;">(Tanpa pesan)</span>'}</div>
-              <div style="color:#aaa;font-size:0.8em;">${msg.time}</div>
+      try {
+        const resp = await fetch(API_URL);
+        if (!resp.ok) throw new Error('Gagal mengambil data');
+        const data = await resp.json();
+        messageList.innerHTML = "";
+        if (!data || data.length === 0) {
+          messageList.innerHTML = '<div style="text-align:center;color:#aaa;">Belum ada pesan masuk.</div>';
+          return;
+        }
+        data.reverse().forEach(msg => {
+          const div = document.createElement("div");
+          div.className = "message-list-item";
+          div.innerHTML = `
+            <div style="display:flex;align-items:center;gap:1rem;">
+              ${msg.selfie ? `<img src="${msg.selfie}" alt="Selfie" style="width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid #e50914;">` : ""}
+              <div>
+                <div style="font-weight:bold;color:#e50914;">${msg.name || '-'} <span style="color:#888;font-size:0.9em;font-weight:normal;">(${msg.attendance || '-'})</span></div>
+                <div style="color:#fff;margin:0.5rem 0 0.25rem 0;">${msg.message ? msg.message : '<span style="color:#bbb;font-style:italic;">(Tanpa pesan)</span>'}</div>
+                <div style="color:#aaa;font-size:0.8em;">${msg.time || ''}</div>
+              </div>
             </div>
-          </div>
-        `;
-        messageList.appendChild(div);
-      });
+          `;
+          messageList.appendChild(div);
+        });
+      } catch (err) {
+        messageList.innerHTML = '<div style="text-align:center;color:#e50914;">Gagal memuat pesan. Coba refresh halaman.</div>';
+      }
     }
     loadMessages();
     setInterval(loadMessages, 10000);
