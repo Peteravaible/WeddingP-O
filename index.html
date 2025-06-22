@@ -282,6 +282,8 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
+
+    /* RESPONSIVE: Foto pasangan pria & wanita berdampingan tanpa scroll */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -300,22 +302,19 @@
       .hamburger {
         display: block;
       }
-      /* PATCH: couple-container tetap horizontal di mobile */
       .couple-container {
         flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
+        flex-wrap: wrap;
         gap: 1.2rem;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
+        justify-content: center;
       }
       .couple-card {
-        min-width: 180px;
-        max-width: 200px;
-        width: 60vw;
+        min-width: 140px;
+        max-width: 160px;
+        width: 46vw;
       }
       .couple-img {
-        height: 170px;
+        height: 120px;
       }
       .countdown {
         flex-direction: column;
@@ -325,6 +324,7 @@
         width: 100%;
       }
     }
+
     .audio-control {
       position: fixed;
       bottom: 20px;
