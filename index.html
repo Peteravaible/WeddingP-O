@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -299,9 +300,18 @@
       .hamburger {
         display: block;
       }
+      /* PATCH: couple-container tetap horizontal di mobile */
       .couple-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1.5rem;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+      }
+      .couple-card {
+        min-width: 250px;
+        flex: 0 0 auto;
       }
       .countdown {
         flex-direction: column;
@@ -355,6 +365,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="nav">
