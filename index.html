@@ -283,8 +283,27 @@
       font-size: 1.5rem;
     }
 
-    /* RESPONSIVE: Foto pasangan pria & wanita berdampingan tanpa scroll */
+    /* RESPONSIVE: Foto pasangan pria & wanita benar-benar bersebelahan tanpa scroll di HP */
     @media (max-width: 768px) {
+      .couple-container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 1rem;
+        width: 100%;
+        margin: 0 auto;
+        overflow: visible;
+      }
+      .couple-card {
+        width: 48%;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+      }
+      .couple-img {
+        height: 110px;
+      }
       .nav-links {
         display: none;
         flex-direction: column;
@@ -302,20 +321,6 @@
       .hamburger {
         display: block;
       }
-      .couple-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1.2rem;
-        justify-content: center;
-      }
-      .couple-card {
-        min-width: 140px;
-        max-width: 160px;
-        width: 46vw;
-      }
-      .couple-img {
-        height: 120px;
-      }
       .countdown {
         flex-direction: column;
         align-items: center;
@@ -324,7 +329,6 @@
         width: 100%;
       }
     }
-
     .audio-control {
       position: fixed;
       bottom: 20px;
