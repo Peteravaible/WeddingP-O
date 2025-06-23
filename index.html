@@ -75,6 +75,24 @@
       .slide-section { min-height: unset; }
     }
     .audio-control { position: fixed; bottom: 20px; right: 20px; background-color: var(--nikahfix-red); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3);}
+    /* Arrow pointer for audio */
+    #music-pointer {
+      position: absolute;
+      right: 70px;
+      bottom: 10px;
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      animation: arrow-bounce 1.2s infinite;
+    }
+    @keyframes arrow-bounce {
+      0%   { transform: translateY(0);}
+      50%  { transform: translateY(-10px);}
+      100% { transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
@@ -270,35 +288,56 @@
       </div>
     </div>
   </section>
-  <!-- Our Love Story Section (placed after lokasi) -->
+  <!-- Our Love Story Section (pembaharuan posisi episode & deskripsi) -->
   <section class="section" id="our-love-story" style="padding-top:0; padding-bottom:0;">
-    <div class="slide-section fade-in" style="background:#111; color:#fff; max-width:800px; margin:0 auto; min-height:40vh; box-shadow:0 5px 30px rgba(0,0,0,0.35); text-align:left;">
+    <div class="slide-section fade-in" style="background:#111; color:#fff; max-width:700px; margin:0 auto; box-shadow:0 5px 30px rgba(0,0,0,0.35); text-align:left;">
       <h2 style="font-size:2.3rem; font-weight:bold; margin-bottom:2.4rem; margin-top:0;">Our Love Story</h2>
       <!-- Episode 1 -->
-      <div style="display:flex; gap:1.7rem; margin-bottom:1.7rem;">
-        <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650073/WhatsApp_Image_2025-06-19_at_10.58.45_1_kjeyjc.jpg" alt="Love Story 1" style="width:220px; height:120px; object-fit:cover; border-radius:10px;">
-        <div>
-          <div style="font-weight:bold; font-size:1.15rem;">Episode 1:<br>Kabar Lewat Udara</div>
-          <div style="font-size:1rem; color:#ddd; margin-bottom:.3rem;">2019</div>
-          <div style="font-size:1rem;">Terpisah jarak yang jauh, membuat komunikasi yang sulit.</div>
+      <div style="margin-bottom:2.3rem;">
+        <div style="display:flex; gap:1.2rem; align-items: flex-start;">
+          <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650073/WhatsApp_Image_2025-06-19_at_10.58.45_1_kjeyjc.jpg" alt="Love Story 1" style="width:200px; height:100px; object-fit:cover; border-radius:10px;">
+          <div style="display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-weight:bold; font-size:1.08rem; margin-bottom:0;">
+              Episode 1:<br>
+              <span style="font-size:1.15rem;">Kabar Lewat Udara</span>
+            </div>
+            <div style="font-size:1rem; color:#ddd; margin-top:.3rem;">2021</div>
+          </div>
+        </div>
+        <div style="font-size:1rem; color:#d4d4d4; margin-left:0; margin-top:1rem;">
+          Terpisah jarak yang jauh, membuat komunikasi yang sulit.
         </div>
       </div>
       <!-- Episode 2 -->
-      <div style="display:flex; gap:1.7rem; margin-bottom:1.7rem;">
-        <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650072/WhatsApp_Image_2025-06-19_at_10.59.44_qlnkke.jpg" alt="Love Story 2" style="width:220px; height:120px; object-fit:cover; border-radius:10px;">
-        <div>
-          <div style="font-weight:bold; font-size:1.15rem;">Episode 2:<br>First Meet</div>
-          <div style="font-size:1rem; color:#ddd; margin-bottom:.3rem;">2022</div>
-          <div style="font-size:1rem;">Selang beberapa tahun akhirnya bertemu pertama kali, makan bersama tetapi masih malu-malu.</div>
+      <div style="margin-bottom:2.3rem;">
+        <div style="display:flex; gap:1.2rem; align-items: flex-start;">
+          <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650072/WhatsApp_Image_2025-06-19_at_10.59.44_qlnkke.jpg" alt="Love Story 2" style="width:200px; height:100px; object-fit:cover; border-radius:10px;">
+          <div style="display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-weight:bold; font-size:1.08rem; margin-bottom:0;">
+              Episode 2:<br>
+              <span style="font-size:1.15rem;">First Meet</span>
+            </div>
+            <div style="font-size:1rem; color:#ddd; margin-top:.3rem;">2022</div>
+          </div>
+        </div>
+        <div style="font-size:1rem; color:#d4d4d4; margin-left:0; margin-top:1rem;">
+          Selang beberapa tahun akhirnya bertemu pertama kali, makan bersama tetapi masih malu-malu.
         </div>
       </div>
       <!-- Episode 3 -->
-      <div style="display:flex; gap:1.7rem;">
-        <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650071/WhatsApp_Image_2025-06-19_at_10.58.47_rhkbsq.jpg" alt="Love Story 3" style="width:220px; height:120px; object-fit:cover; border-radius:10px;">
-        <div>
-          <div style="font-weight:bold; font-size:1.15rem;">Episode 3:<br>Janji Sehidup Semati</div>
-          <div style="font-size:1rem; color:#ddd; margin-bottom:.3rem;">2025</div>
-          <div style="font-size:1rem;">Tahun ini, semua keraguan dan perjuangan itu hilang. Memulai perjalanan baru bersama.</div>
+      <div>
+        <div style="display:flex; gap:1.2rem; align-items: flex-start;">
+          <img src="https://res.cloudinary.com/dubdqfwvm/image/upload/v1750650071/WhatsApp_Image_2025-06-19_at_10.58.47_rhkbsq.jpg" alt="Love Story 3" style="width:200px; height:100px; object-fit:cover; border-radius:10px;">
+          <div style="display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-weight:bold; font-size:1.08rem; margin-bottom:0;">
+              Episode 3:<br>
+              <span style="font-size:1.15rem;">Janji Sehidup Semati</span>
+            </div>
+            <div style="font-size:1rem; color:#ddd; margin-top:.3rem;">2023</div>
+          </div>
+        </div>
+        <div style="font-size:1rem; color:#d4d4d4; margin-left:0; margin-top:1rem;">
+          Tahun ini, semua keraguan dan perjuangan itu hilang. Memulai perjalanan baru bersama.
         </div>
       </div>
     </div>
@@ -409,12 +448,21 @@
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <img src="" alt="Modal Image" class="modal-content" id="modalImage">
   </div>
-  <!-- Audio Control -->
-  <div class="audio-control" id="audioControl">
+  <!-- Audio Control + Pointer Arrow -->
+  <div class="audio-control" id="audioControl" style="position:fixed; bottom:20px; right:20px; z-index:100;">
     <i class="fas fa-music"></i>
+    <div id="music-pointer">
+      <!-- SVG Arrow Right -->
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <g>
+          <path d="M5 30 Q22 30 35 23" stroke="#fff" stroke-width="3" fill="none"/>
+          <polygon points="35,23 32,30 39,27" fill="#fff"/>
+        </g>
+      </svg>
+    </div>
   </div>
   <!-- Audio Element -->
-  <audio id="bgMusic" loop autoplay>
+  <audio id="bgMusic" loop>
     <source src="https://res.cloudinary.com/dubdqfwvm/video/upload/v1750478369/OurWeddingSong_hovaai.mp3" type="audio/mpeg">
   </audio>
   <script>
@@ -478,10 +526,33 @@
       preweddModal.style.display = 'none';
       preweddVideo.pause();
     }
-    // Audio Control
+    // Audio Control + pointer logic
+    const pointer = document.getElementById('music-pointer');
     const audioControl = document.getElementById('audioControl');
     const bgMusic = document.getElementById('bgMusic');
     let isPlaying = false;
+
+    function hidePointer() {
+      if(pointer) pointer.style.display = 'none';
+    }
+    audioControl.addEventListener('click', hidePointer);
+    if(bgMusic){
+      bgMusic.addEventListener('play', hidePointer);
+    }
+
+    // Enable music on first interaction for mobile compatibility
+    function enableMusicOnFirstInteraction() {
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+      }).catch(()=>{});
+      window.removeEventListener('touchstart', enableMusicOnFirstInteraction);
+      window.removeEventListener('click', enableMusicOnFirstInteraction);
+    }
+    window.addEventListener('touchstart', enableMusicOnFirstInteraction, {once:true});
+    window.addEventListener('click', enableMusicOnFirstInteraction, {once:true});
+
+    // Toggle play/pause on icon click
     audioControl.addEventListener('click', () => {
       if (isPlaying) {
         bgMusic.pause();
@@ -491,18 +562,6 @@
         audioControl.innerHTML = '<i class="fas fa-pause"></i>';
       }
       isPlaying = !isPlaying;
-    });
-    window.addEventListener('DOMContentLoaded', function() {
-      const bgMusic = document.getElementById('bgMusic');
-      bgMusic.play().catch(() => {
-        function tryPlay() {
-          bgMusic.play();
-          window.removeEventListener('click', tryPlay);
-          window.removeEventListener('scroll', tryPlay);
-        }
-        window.addEventListener('click', tryPlay);
-        window.addEventListener('scroll', tryPlay);
-      });
     });
   </script>
 </body>
